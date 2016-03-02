@@ -19,18 +19,18 @@ It's intended use case it to remove all fallback CSS into its own file so that i
 **NOTE 2: I intend to port this to TypeScript or Babel shortly for better backwards compatibility in older Node versions. Presently, you'll need to use a modern NODE version (I'm rocking v4.2.6 at time of writing)**
 
 ## Overview
-The plugin takes 3 options: remaining, extracted and extractors. It processes your CSS, matches relevant rules (that you set in "extractors") and extracts them to the "extracted" file location. Rules that haven't matched are written to the "remaining" file location. That's it!
+The plugin takes 3 options: `remaining`, `extracted` and `extractors`. It processes your CSS, matches relevant rules (that you set in "extractors") and extracts them to the "extracted" file location. Rules that haven't matched are written to the "remaining" file location. Your existing file (the one that had both extracted and remaining in) continues to it's original location. That's it!
 
 **It is recommended that this plugin is used just before or just after your minifier (e.g. [cssnano](http://cssnano.co))**
 
 ## Options
-### remaining
+#### remaining
 This is the location you want the rules that haven't matched to be written to.
 
-### extracted
+#### extracted
 This is the location you want the rules that have matched to be written to.
 
-### extractors
+#### extractors
 This is an object of possible strings (e.g. CSS selectors) that, should they be present in a rule will cause them to be extracted.
 
 ## Example configuration
