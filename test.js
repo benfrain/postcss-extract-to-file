@@ -1,10 +1,10 @@
 import postcss from 'postcss';
 import test from "ava";
-import fs from "fs";
+import {readFile as read} from "fs";
 
 function createStringFromFile (fileName) {
     return new Promise (function(resolve, reject) {
-        fs.readFile(fileName, (err, data) => {
+        read(fileName, (err, data) => {
             if (err) throw err;
             // Split the buffer to remove the comment that was added
             var theExport = data.slice(0, 32);
