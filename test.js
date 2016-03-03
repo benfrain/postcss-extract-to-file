@@ -1,30 +1,15 @@
 import postcss from 'postcss';
 import test from "ava";
-import {read as read} from 'fs';
-import {open as open} from 'fs';
+import fs from "fs";
 
 function createStringFromFile (fileName) {
     return new Promise (function(resolve, reject) {
-        open(fileName, "r", function(error, fd){
-            var readBuffer = new Buffer(1024);
-            var bufferOffset = 0,
-            bufferLength = readBuffer.length,
-            filePosition = 0;
-            // Now read the buffer
-            read(fd,
-                readBuffer,
-                bufferOffset,
-                bufferLength,
-                filePosition,
-                function (error, readBytes) {
-                    if (error) { 
-                        Reject(Error(error));
-                    }
-                // Split the buffer to remove the comment that was added
-                var theExport = readBuffer.slice(0, 32);
-                var out = theExport.toString('utf-8');
-                resolve(out);        
-            });
+        fs.readFile(fileName, (err, data) => {
+            if (err) throw err;
+            // Split the buffer to remove the comment that was added
+            var theExport = data.slice(0, 32);
+            const out = theExport.toString("utf-8");
+            resolve();
         });
     });
 }
