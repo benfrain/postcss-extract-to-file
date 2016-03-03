@@ -23,6 +23,50 @@ The plugin takes 3 options: `remaining`, `extracted` and `extractors`. It proces
 
 **It is recommended that this plugin is used just before or just after your minifier (e.g. [cssnano](http://cssnano.co))**
 
+## Example
+Given this config:
+
+````
+"postcss-extract-to-file": {
+    "remaining": "./output/remaining.css",
+    "extracted": "./output/extracted.css",
+    "extractors": [
+        ".no-w3cflexbox",
+        ".no-svginhtml",
+        ".no-flex"
+    ]
+},
+````
+
+Given this input CSS:
+
+### Input
+````
+.normal { 
+    width: 100%;
+}
+
+.no-flex .normal {
+    width: 50%;
+}
+````
+
+### Output Part 1 (extracted.css)
+````
+.no-flex .normal {
+    width: 50%;
+}
+````
+
+### Output Part 2 (remaining.css)
+````
+.normal { 
+    width: 100%;
+}
+````
+
+Original styles will be unaffected and continue to their 'normal' destination.
+
 ## Options
 #### remaining
 This is the location you want the rules that haven't matched to be written to.
@@ -32,29 +76,6 @@ This is the location you want the rules that have matched to be written to.
 
 #### extractors
 This is an object of possible strings (e.g. CSS selectors) that, should they be present in a rule will cause them to be extracted.
-
-## Example configuration
-Given an PostCSS plugin options object like this:
-
-````
-"postcss-extract-to-file": {
-    "remaining": "./output/remaining.css",
-    "extracted": "./output/extracted.css",
-    "extractors": [
-        ".no-w3cflexbox",
-        ".os_",
-        ".no-supportsnativescrolling",
-        ".no-svginhtml",
-        ".no-flex",
-        ".browser_ie",
-        ".no-csstransitions",
-        ".ie-8",
-        ".ie-9"
-    ]
-},
-````
-
-Any rules that match a string in the "extractors" array will be extracted and written to the output destination and filename set in "extracted". The remaining rules will be written to the "remaining" location.
 
 ## Tests
 This plugin uses [AVA](https://github.com/sindresorhus/ava) for tests. If you want to check this plugin is working as it should on your system, from CLI, browse to `node_modules/postcss-extract-to-file/` and run `npm test`.
