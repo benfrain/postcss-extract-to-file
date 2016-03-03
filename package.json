@@ -1,6 +1,6 @@
 {
   "name": "postcss-extract-to-file",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A PostCSS plugin to extract rules from one file and write them to another",
   "main": "index.js",
   "scripts": {
