@@ -2,7 +2,7 @@
 
 A basic PostCSS plugin to extract certain rules from one file and write them to a different file.
 
-It's intended use case it to remove all fallback CSS into its own file so that it can be loaded only for devices that require it. Think of all the OldIE rules for desktop or the non-W3C flexbox implementations for mobile.
+Its intended use case it to remove all fallback CSS into its own file so that it can be loaded only for devices that require it. Think of all the OldIE rules for desktop or the non-W3C flexbox implementations for mobile.
 
 ## Install
 ### NPM 
